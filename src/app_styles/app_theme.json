@@ -1,0 +1,18 @@
+{
+    "theme_mode": "dark",
+    "colors": {
+        "background": "#121214",
+        "sidebar_bg": "#242428",
+        "bottom_bar_bg": "#1c1c20",
+        "text_primary": "#e3e3e3",
+        "text_secondary": "#a0a0a8",
+        "border": "#3c3c42",
+        "icon_color": "#e3e3e3"
+    },
+    "buttons": {
+        "a": {
+            "color": "#e3e3e3",
+            "bgcolor": "#7f02b5"
+        }
+    }
+}
