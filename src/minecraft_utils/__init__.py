@@ -14,10 +14,6 @@ from .models import MinecraftProvider, MinecraftVersion
 from .mc_installer import MinecraftInstaller
 from .java_installer import JavaInstaller
 
-
-# ============================================================
-# ЛОГИРОВАНИЕ: файл + консоль
-# ============================================================
 LOG_FILE = os.path.abspath(os.path.join(os.getcwd(), "mc_debug.log"))
 
 _logger = logging.getLogger("MC-DEBUG")

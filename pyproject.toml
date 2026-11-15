@@ -11,7 +11,9 @@ dependencies = [
     "flet>=1.1.2",
     "minecraft-launcher-lib (>=8.0,<9.0)",
     "install-jdk (>=1.1.0,<2.0.0)",
-    "pydantic>=2.9.0"
+    "pydantic>=2.9.0",
+    "cryptography (>=50.0.2,<51.0.0)",
+    "keyring (>=25.7.0,<26.0.0)"
 ]
 
 [dependency-groups]

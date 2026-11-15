@@ -18,7 +18,6 @@ class MinecraftInstaller:
         callback_dict: dict,
         java: str | None = None,
     ) -> tuple[InstallerError | None, str | None]:
-        
         if ver.provider != MinecraftProvider.VANILLA:
             mod_loader = mll.mod_loader.get_mod_loader(ver.provider.value)
             if not mod_loader.is_minecraft_version_supported(ver.version):
@@ -32,17 +31,10 @@ class MinecraftInstaller:
 
             loader_version = mod_loader.get_latest_loader_version(ver.version)
             installed_version_id = mod_loader.get_installed_version(ver.version, loader_version)
-            
-            # Используем provider.value (т.е. 'quilt'), чтобы папка называлась красиво
             install_dir = (
                 MinecraftInstaller.get_path()
                 + f"/{"_".join(ver.server_name.capitalize().split())}_{ver.version}_{ver.provider.value}"
             )
-
-            # ========================================================
-            # ШАГ 1: Устанавливаем ВАНИЛЬНЫЙ Minecraft в эту папку
-            # Без этого установщик Quilt упадет!
-            # ========================================================
             vanilla_json = os.path.join(install_dir, "versions", ver.version, f"{ver.version}.json")
             if not os.path.exists(vanilla_json):
                 try:
@@ -53,10 +45,6 @@ class MinecraftInstaller:
                         InstallerError(error=f"Не удалось установить ванильный Minecraft: {_ex}", level=4),
                         None,
                     )
-
-            # ========================================================
-            # ШАГ 2: Устанавливаем Quilt Loader
-            # ========================================================
             if not mll.utils.is_version_valid(installed_version_id, install_dir):
                 try:
                     print(f"[MC-INSTALLER] Ставим {ver.provider.value} {loader_version}...")
@@ -68,7 +56,6 @@ class MinecraftInstaller:
                         java=java,
                     )
                 except Exception as _ex:
-                    # Если упало — смотрим, что вообще есть в папке versions
                     versions_dir = os.path.join(install_dir, "versions")
                     if os.path.isdir(versions_dir):
                         print(f"[MC-INSTALLER] УСТАНОВКА УПАЛА! Содержимое versions/: {os.listdir(versions_dir)}")
@@ -82,8 +69,6 @@ class MinecraftInstaller:
                         ),
                         None,
                     )
-
-            # Финальная проверка, что всё установилось
             if not mll.utils.is_version_valid(installed_version_id, install_dir):
                  return (
                         InstallerError(
