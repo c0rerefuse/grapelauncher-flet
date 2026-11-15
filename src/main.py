@@ -50,7 +50,7 @@ def main(page: ft.Page):
 
     def select_version(e):
         selected_version.value = f"{e.control.content}"
-        selected_version.data = f"{e.data}"
+        selected_version.data = e.control.data
         page.update()
 
     version_popup = ft.PopupMenuButton(
