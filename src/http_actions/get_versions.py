@@ -8,7 +8,7 @@ def get_all_versions() -> list[ServerData]:
         ServerData(
             name="Pokecraft 1.21.1",
             mc_ver='1.21.1',
-            provider=MinecraftProvider.QUILT,
+            provider=MinecraftProvider.NEOFORGE,
             java_ver='21',
             mod_path=''
         ),
